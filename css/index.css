@@ -1,0 +1,43 @@
+/* 内容栏 */
+.todoes .todo{
+  height: 40px;
+  font-size: 24px;
+}
+
+.todoes .done{
+  font-weight: 600;
+  color: red;
+  text-decoration: line-through;
+}
+
+.todoes .pedding{
+  color: #0c8029;
+  font-weight: 600;
+}
+
+
+/* 输入栏 */
+.todobox {
+  border: 1px solid #448855;
+  height: 40px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+}
+
+.todobox input{
+  width: 80%;
+  height: 100%;
+  font-size: 20px;
+  color: #448855;
+  border: 1px solid #448855;
+
+}
+
+.todobox button{
+  width: 20%;
+  font-size: 20px;
+  border: 1px solid #448855;
+  color: #448855
+}

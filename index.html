@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>todos</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+  <!-- 内容栏 -->
+  <ul class="todoes" id="todoes">
+    <li class="todo done">111 完成 删除 红色 dddcc </li>
+    <li class="todo pedding">222 进行时 绿色 123 dddcc </li>
+    <li class="todo ">333 qaz 未完成 123 dddcc </li>
+    <li class="todo done">444 完成 dfsd 123 dddcc </li>
+    <li class="todo">555 qaz 未完成 123 dddcc </li>
+  </ul>
+  <!-- 内容栏 结束 -->
+
+  <!-- 输入栏 -->
+  <div class="todobox">
+    <input id="todo" value="" type="text" placeholder="清输入你想完成的任务..."></input>
+    <button id="todoBtn" type="button" name="button">提交</button>
+  </div>
+  <!-- 输入栏 结束 -->
+
+  <script type="text/javascript">
+    var btn = document.getElementById('todoBtn');
+    btn.onclick = function () {
+      // 获取输入框的输入的内容
+      var todo = document.getElementById('todo').value;
+      // console.log(todo);
+      // 获取时间
+      var date = new Date();
+      // 生成对应的标签（内容+时间），此时时间还是时间戳
+      var li = "<li class='todo'>" + new Date().fmt("yyyy-MM-dd hh:mm:ss") + todo + "</li>";
+      // 获取文本框原有的内容
+      var todoes = document.getElementById('todoes');
+      // 把输入框新内容加进文本框
+      var html = todoes.innerHTML + li;
+      todoes.innerHTML = html;
+
+    }
+
+    // 日期格式化
+    Date.prototype.fmt = function (fmt) { //author: meizz   
+      var o = {
+        "M+": this.getMonth() + 1, //月份   
+        "d+": this.getDate(), //日   
+        "h+": this.getHours(), //小时   
+        "m+": this.getMinutes(), //分   
+        "s+": this.getSeconds(), //秒   
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度   
+        "S": this.getMilliseconds() //毫秒   
+      };
+      if (/(y+)/.test(fmt))
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+      for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt))
+          fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+      return fmt;
+    }
+  </script>
+</body>
+
+</html>
