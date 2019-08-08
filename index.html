@@ -16,8 +16,6 @@
     <li class="todo done">111 完成 删除 红色 dddcc </li>
     <li class="todo pedding">222 进行时 绿色 123 dddcc </li>
     <li class="todo ">333 qaz 未完成 123 dddcc </li>
-    <li class="todo done">444 完成 dfsd 123 dddcc </li>
-    <li class="todo">555 qaz 未完成 123 dddcc </li>
   </ul>
   <!-- 内容栏 结束 -->
 
@@ -29,25 +27,31 @@
   <!-- 输入栏 结束 -->
 
   <script type="text/javascript">
+    // 获取按钮，设置点击事件
     var btn = document.getElementById('todoBtn');
     btn.onclick = function () {
       // 获取输入框的输入的内容
-      var todo = document.getElementById('todo').value;
-      // console.log(todo);
+      var todo = document.getElementById('todo').value.trim();
+      // 验证非空
+      if(!todo){
+        console.log('仅空格，不输出');
+        return;
+      }
       // 获取时间
       var date = new Date();
       // 生成对应的标签（内容+时间），此时时间还是时间戳
-      var li = "<li class='todo'>" + new Date().fmt("yyyy-MM-dd hh:mm:ss") + todo + "</li>";
+      var li = "<li class='todo'>" + new Date().fmt('yyyy-MM-dd hh:mm:ss') +' '+ todo + "</li>";
       // 获取文本框原有的内容
       var todoes = document.getElementById('todoes');
       // 把输入框新内容加进文本框
       var html = todoes.innerHTML + li;
       todoes.innerHTML = html;
-
+      // 发送后，输入框置空
+      document.getElementById('todo').value='';
     }
 
     // 日期格式化
-    Date.prototype.fmt = function (fmt) { //author: meizz   
+    Date.prototype.fmt = function (fmt) { 
       var o = {
         "M+": this.getMonth() + 1, //月份   
         "d+": this.getDate(), //日   
@@ -64,6 +68,11 @@
           fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
       return fmt;
     }
+    
+    // 去除空格方法
+    String.prototype.trim = function () {
+    return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+  };
   </script>
 </body>
 
