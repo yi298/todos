@@ -4,6 +4,13 @@
   font-size: 24px;
 }
 
+.todoes .todo span{
+  display: inline-block;
+  width: 35%;
+  text-align: left;
+  margin-left: 10px;
+}
+
 .todoes .done{
   font-weight: 600;
   color: red;
