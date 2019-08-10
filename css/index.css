@@ -1,4 +1,8 @@
 /* 内容栏 */
+.todoes{
+  list-style: none;
+}
+
 .todoes .todo{
   height: 40px;
   font-size: 24px;
