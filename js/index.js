@@ -9,7 +9,7 @@ $("#todoBtn").click(function() {
   }
   var li = document.createElement("li"); //获取li标签
   li.classList.add("list-group-item"); //添加标签
-  li.innerText = new Date().fmt("yyyy-MM-dd hh:mm:ss") + $todo.val(); //添加内容
+  li.innerText = new Date().fmt("yyyy-MM-dd hh:mm:ss") +' '+ $todo.val(); //添加内容
   $(".list-group").append(li);
   // 发送后，输入框置空
   $todo.val("");
@@ -69,6 +69,15 @@ var flag = true; //全局变量
 $("#todoes").on("click", "li", function() {
   console.log(this, "点击获取li标签");
   var $li = $(this);
+  if ($li.hasClass("list-group-item-info")) {
+    $('.message .modal-body').text('是否完成??');
+  }
+  if (
+    !$li.hasClass("list-group-item-info") &&
+    !$li.hasClass("list-group-item-success")
+  ) {
+    $('.message .modal-body').text('是否进行??');
+  }
   $(".message").modal();
   $("#confirm").click(function() {
     console.log("确认按钮有反应");
