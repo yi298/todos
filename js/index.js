@@ -65,10 +65,18 @@ ul.addEventListener("click", function(e) {
   }
 });
 */
-
+var flag = true; //全局变量
 $("#todoes").on("click", "li", function() {
   console.log(this, "点击获取li标签");
   var $li = $(this);
+  $(".message").modal();
+  $("#confirm").click(function() {
+    console.log("确认按钮有反应");
+      changeListGroup($li);
+  });
+});
+
+function changeListGroup($li) {
   if ($li.hasClass("list-group-item-info")) {
     $li.removeClass("list-group-item-info");
     $li.addClass("list-group-item-success");
@@ -79,7 +87,9 @@ $("#todoes").on("click", "li", function() {
   ) {
     $li.addClass("list-group-item-info");
   }
-});
+  $('.message').modal('hide')//手动隐藏模态框
+}
+
 
 /**封装好的方法 */
 // 日期格式化
