@@ -42,12 +42,13 @@
 
   <!-- 输入栏 -->
   <div class="todobox">
-    <input id="todo" value="" type="text" placeholder="清输入你想完成的任务..."></input>
-    <button id="todoBtn" type="button" name="button">提交</button>
+    <!-- <input id="todo" value="" type="text" placeholder="清输入你想完成的任务..."></input> -->
+    <button id="todoBtn" type="button" class=" btn btn-primary" name="button">添加任务</button>
   </div>
   <!-- 输入栏 结束 -->
 
   <!-- 模态框 -->
+  <!-- 内容栏模态框 -->
   <div class="modal fade message" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -65,6 +66,29 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
+    <!-- 输入栏模态框 -->
+    <div class="modal fade todo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" >新任务</h4>
+            </div>
+            <div class="modal-body">
+            
+                <div class="form-group">
+                  <label for="recipient-text" class="control-label">任务内容：</label>
+                  <input type="text" class="form-control" id="todo" >
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <button type="button" class="btn btn-primary" id="addTodo">添加任务</button>
+            </div>
+          </div>
+        </div>
+      </div>
   <!-- 模态框 结束 -->
 </body>
 <script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.js"></script>

@@ -1,23 +1,16 @@
 // 获取按钮，设置点击事件
 $("#todoBtn").click(function() {
-  // 获取输入框的输入的内容
-  var $todo = $("#todo");
-  // 验证非空
-  if (!$todo.val().trim()) {
-    console.log("仅空格，不输出");
-    return;
-  }
-  var li = document.createElement("li"); //获取li标签
-  li.classList.add("list-group-item"); //添加标签
-  li.innerText = new Date().fmt("yyyy-MM-dd hh:mm:ss") +' '+ $todo.val(); //添加内容
-  $(".list-group").append(li);
-  // 发送后，输入框置空
-  $todo.val("");
+  // 添加模态框
+  $(".todo").modal("show");
+
   // //  把输入框新内容加进文本框
   // var html = todoes.innerHTML + li;
   // todoes.innerHTML = html;
   // // 发送后，输入框置空
   // document.getElementById("todo").value = "";
+});
+$("#addTodo").click(function() {
+  addTodo();
 });
 // btn.onclick = function() {
 // // 获取输入框的输入的内容
@@ -65,23 +58,23 @@ ul.addEventListener("click", function(e) {
   }
 });
 */
-var flag = true; //全局变量
+var flag = false; //全局变量
 $("#todoes").on("click", "li", function() {
   console.log(this, "点击获取li标签");
   var $li = $(this);
   if ($li.hasClass("list-group-item-info")) {
-    $('.message .modal-body').text('是否完成??');
+    $(".message .modal-body").text("是否完成??");
   }
   if (
     !$li.hasClass("list-group-item-info") &&
     !$li.hasClass("list-group-item-success")
   ) {
-    $('.message .modal-body').text('是否进行??');
+    $(".message .modal-body").text("是否进行??");
   }
   $(".message").modal();
   $("#confirm").click(function() {
     console.log("确认按钮有反应");
-      changeListGroup($li);
+    changeListGroup($li);
   });
 });
 
@@ -96,9 +89,15 @@ function changeListGroup($li) {
   ) {
     $li.addClass("list-group-item-info");
   }
-  $('.message').modal('hide')//手动隐藏模态框
+  $(".message").modal("hide"); //手动隐藏模态框
 }
 
+// 回车键触发
+$("#todo").keydown(function(event) {
+  if (event.keyCode == 13) {
+    addTodo();
+  }
+});
 
 /**封装好的方法 */
 // 日期格式化
@@ -130,6 +129,24 @@ Date.prototype.fmt = function(fmt) {
 String.prototype.trim = function() {
   return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "");
 };
+
+// 内容栏添加内容
+function addTodo() {
+  // 获取输入框的输入的内容
+  var $todo = $("#todo");
+  // 验证非空
+  if (!$todo.val().trim()) {
+    console.log("仅空格，不输出");
+    return;
+  }
+  var li = document.createElement("li"); //获取li标签
+  li.classList.add("list-group-item"); //添加标签
+  li.innerText = new Date().fmt("yyyy-MM-dd hh:mm:ss") + " " + $todo.val(); //添加内容
+  $(".list-group").append(li);
+  // 发送后，输入框置空
+  $todo.val("");
+  $(".todo").modal("hide");
+}
 /*
 function hasClass(array, className) {
   for (var i = 0; i < array.length; i++) {
